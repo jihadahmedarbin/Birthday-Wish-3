@@ -1,0 +1,966 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For X ♡</title>
+
+<style>
+:root {
+    --gold: #f5c76a;
+    --pale: #fff0c4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    color: var(--pale);
+    background: radial-gradient(ellipse at 50% 45%, #24170b 0%, #090705 43%, #010101 82%);
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.scene {
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 25px 16px 70px;
+}
+
+.scene::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(115deg, transparent 20%, #ffd77709 45%, #fff4d414 50%, transparent 75%);
+    background-size: 220% 100%;
+    animation: lightSweep 9s ease-in-out infinite alternate;
+}
+
+@keyframes lightSweep {
+    from { background-position: 0% 50%; }
+    to { background-position: 100% 50%; }
+}
+
+.ambient {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: #b9782315;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.ambient.one { top: -200px; left: -150px; }
+.ambient.two { right: -200px; bottom: -220px; }
+
+.eyebrow {
+    color: #d9c59a;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    text-align: center;
+    animation: fadeUp 1.6s both;
+}
+
+h1 {
+    margin-top: 15px;
+    font-size: clamp(44px, 8vw, 82px);
+    font-weight: normal;
+    letter-spacing: 7px;
+    text-align: center;
+    background: linear-gradient(110deg, #9d6825, #fff0bd, #d8a34d, #fff8db, #a46b26);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 18px #d89c3b35);
+    animation: titleShine 7s linear infinite, fadeUp 2s both;
+}
+
+@keyframes titleShine {
+    to { background-position: 250% center; }
+}
+
+.subtitle {
+    margin-top: 12px;
+    color: #d9bb7b;
+    font-size: clamp(15px, 3vw, 21px);
+    font-style: italic;
+    text-align: center;
+    animation: fadeUp 2.5s both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* HEART */
+
+.heart-area {
+    width: min(360px, 86vw);
+    height: 300px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    margin: 4px 0;
+    perspective: 900px;
+}
+
+.heart-stage {
+    width: 170px;
+    height: 170px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    transform-style: preserve-3d;
+    animation: heartFloat 4s ease-in-out infinite;
+}
+
+@keyframes heartFloat {
+    0%, 100% { transform: translateY(0) rotateY(-8deg); }
+    50% { transform: translateY(-9px) rotateY(8deg); }
+}
+
+.heart-shape {
+    width: 105px;
+    height: 105px;
+    position: absolute;
+    background: linear-gradient(140deg, #fff9e7 0%, #77716b 8%, #111 20%, #25201b 48%, #030303 75%);
+    border: 2px solid #f6d38b;
+    transform: rotate(-45deg);
+    box-shadow: 0 0 9px #fff0bd, 0 0 28px #e4a83e65, inset 8px 5px 12px #fff8dd28, inset -10px -8px 18px #d79a3025;
+}
+
+.heart-shape::before,
+.heart-shape::after {
+    content: "";
+    position: absolute;
+    width: 105px;
+    height: 105px;
+    background: linear-gradient(135deg, #26221e, #070707 65%);
+    border: 2px solid #e9c477;
+    border-radius: 50%;
+    box-shadow: inset 4px 4px 10px #fff2d12a;
+}
+
+.heart-shape::before {
+    top: -53px;
+    left: -2px;
+    border-bottom-color: transparent;
+}
+
+.heart-shape::after {
+    top: 0;
+    left: 52px;
+    border-left-color: transparent;
+}
+
+.heart-label {
+    position: absolute;
+    z-index: 4;
+    font-size: 43px;
+    letter-spacing: 3px;
+    color: #ffdf9b;
+    text-shadow: 0 0 8px #ffdc91, 0 0 30px #dca345;
+}
+
+.heart-highlight {
+    position: absolute;
+    z-index: 2;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #fff3cc12;
+    filter: blur(18px);
+    pointer-events: none;
+}
+
+.orbit {
+    position: absolute;
+    width: 315px;
+    height: 125px;
+    border: 2px solid #e6b354;
+    border-radius: 50%;
+    transform: rotate(-27deg);
+    box-shadow: 0 0 9px #e9b84d50, inset 0 0 8px #d8a34319;
+    pointer-events: none;
+}
+
+.orbit.two {
+    width: 320px;
+    height: 145px;
+    transform: rotate(30deg);
+    border-color: #ffe2a1;
+    border-width: 1px;
+    animation: orbitTurn 12s linear infinite;
+}
+
+.orbit.three {
+    width: 255px;
+    height: 105px;
+    transform: rotate(75deg);
+    border-color: #a8752c;
+    animation: orbitTurn 18s linear infinite reverse;
+}
+
+@keyframes orbitTurn {
+    from { rotate: 0deg; }
+    to { rotate: 360deg; }
+}
+
+.orbit-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, white, #f9d78a 35%, #976020 75%);
+    box-shadow: 0 0 12px #ffdb8b;
+}
+
+.orbit-dot.d1 { top: 18%; left: 15%; }
+.orbit-dot.d2 { top: 12%; right: 18%; }
+.orbit-dot.d3 { bottom: 10%; right: 20%; }
+.orbit-dot.d4 { bottom: 12%; left: 18%; }
+
+/* STARS */
+
+.star {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #ffe3a0;
+    box-shadow: 0 0 9px 2px #ffbf52;
+    pointer-events: none;
+    animation: twinkle var(--duration) ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .15; transform: scale(.6); }
+    to { opacity: 1; transform: scale(1.7); }
+}
+
+/* FALLING PETALS */
+
+.petal {
+    position: fixed;
+    top: -40px;
+    z-index: 3;
+    color: #d6a0a0;
+    text-shadow: 0 0 8px #edb4a033;
+    pointer-events: none;
+    animation: petalFall var(--duration) linear forwards;
+}
+
+@keyframes petalFall {
+    0% { transform: translate3d(0, -5vh, 0) rotate(0deg); opacity: 0; }
+    12% { opacity: .8; }
+    100% { transform: translate3d(var(--drift), 115vh, 0) rotate(650deg); opacity: 0; }
+}
+
+.caption {
+    color: #dfcca6;
+    font-size: 16px;
+    font-style: italic;
+    text-align: center;
+}
+
+/* BUTTON */
+
+.open-button {
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+    margin-top: 28px;
+    padding: 16px 48px;
+    min-width: 205px;
+    border: 1px solid #f4d18b;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #ffffff19, transparent 30%), linear-gradient(120deg, #070707, #24190b, #080706);
+    color: #ffe3a1;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    letter-spacing: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 18px #e9b64a24, inset 0 0 12px #f8d9980c;
+    transition: transform .35s, box-shadow .35s;
+}
+
+.open-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    transform: skewX(-25deg);
+    background: linear-gradient(90deg, transparent, #fff8d955, transparent);
+    transition: left .7s;
+}
+
+.open-button:hover::before { left: 150%; }
+
+.open-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px #f4c76a50, inset 0 0 15px #ffdda522;
+}
+
+.open-button:disabled { cursor: default; }
+
+.footer {
+    margin-top: 24px;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #a58b5a;
+    text-align: center;
+}
+
+/* MUSIC */
+
+.music-player {
+    position: fixed;
+    left: 20px;
+    bottom: 18px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 13px;
+    border: 1px solid #b9914b70;
+    background: #080705ef;
+    box-shadow: 0 0 18px #b8873120;
+    color: #e7d0a1;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.music-icon { font-size: 22px; color: #f6d48c; }
+
+.music-button {
+    padding: 8px 10px;
+    background: #191209;
+    color: #ffe5a5;
+    border: 1px solid #b9914b;
+    cursor: pointer;
+    font-family: Georgia, serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+/* ARROW */
+
+.arrow {
+    position: fixed;
+    z-index: 25;
+    top: -100px;
+    left: 50%;
+    opacity: 0;
+    color: #fff0b4;
+    font-family: Arial, sans-serif;
+    font-size: clamp(60px, 9vw, 100px);
+    line-height: 1;
+    pointer-events: none;
+    text-shadow: 0 0 8px white, 0 0 24px #ffc04b, 0 0 55px #ff9b1c;
+    transform: translateX(-50%) rotate(90deg);
+}
+
+.scene.launch .arrow {
+    animation: arrowStrike 1.05s cubic-bezier(.3,.7,.2,1) forwards;
+}
+
+@keyframes arrowStrike {
+    0% { top: -120px; opacity: 0; }
+    12% { opacity: 1; }
+    78% { opacity: 1; }
+    100% { top: 46%; opacity: 0; }
+}
+
+/* PARTICLES */
+
+.spark {
+    position: fixed;
+    z-index: 35;
+    width: var(--size, 4px);
+    height: var(--size, 4px);
+    border-radius: 50%;
+    background: radial-gradient(circle, #fffdf0, #ffd05c 55%, #a56b18);
+    box-shadow: 0 0 12px 2px #ffce59;
+    pointer-events: none;
+    animation: sparkBurst var(--duration, 1.2s) ease-out forwards;
+}
+
+@keyframes sparkBurst {
+    from { transform: translate(0, 0) scale(1.5); opacity: 1; }
+    to { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+}
+
+/* PORTAL */
+
+.portal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+    display: grid;
+    place-items: center;
+    background: #020201;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .7s, visibility .7s;
+    overflow: hidden;
+}
+
+.portal-overlay.show { opacity: 1; visibility: visible; }
+
+.portal {
+    width: min(78vw, 390px);
+    aspect-ratio: 1;
+    position: relative;
+    display: grid;
+    place-items: center;
+    transform: scale(.05);
+    opacity: 0;
+}
+
+.portal-overlay.show .portal {
+    animation: portalOpen 2s cubic-bezier(.15,.7,.2,1) forwards;
+}
+
+@keyframes portalOpen {
+    0% { transform: scale(.05) rotate(-40deg); opacity: 0; }
+    40% { opacity: 1; }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.portal-ring {
+    position: absolute;
+    inset: 8%;
+    border: 2px solid #f5cb6c;
+    border-radius: 50%;
+    box-shadow: 0 0 14px #ffd36b, inset 0 0 15px #d9a33e;
+    animation: ringRotate 5s linear infinite;
+}
+
+.portal-ring.r2 {
+    inset: 17%;
+    border-color: #fff0bf;
+    border-width: 1px;
+    animation-duration: 7s;
+    animation-direction: reverse;
+}
+
+.portal-ring.r3 {
+    inset: 27%;
+    border-color: #b98131;
+    animation-duration: 9s;
+}
+
+@keyframes ringRotate {
+    to { transform: rotate(360deg); }
+}
+
+.portal-core {
+    width: 35%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff5d4 0%, #d99b38 10%, #6a4016 35%, #030303 75%);
+    box-shadow: 0 0 35px #ffc654, 0 0 100px #b77927;
+    animation: corePulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes corePulse {
+    to { transform: scale(1.15); filter: brightness(1.4); }
+}
+
+.portal-text {
+    position: absolute;
+    bottom: -45px;
+    width: 100%;
+    color: #ffe5a6;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 5px;
+}
+
+/* BIRTHDAY MESSAGE */
+
+.message {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #030201ef;
+    backdrop-filter: blur(16px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .8s, visibility .8s;
+}
+
+.message.show { opacity: 1; visibility: visible; }
+
+.message-card {
+    position: relative;
+    width: min(450px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 38px 26px;
+    text-align: center;
+    border: 1px solid #dcb75e;
+    background: linear-gradient(135deg, #fff1c410, transparent 35%), radial-gradient(ellipse at top, #392611, #090806 75%);
+    box-shadow: 0 0 65px #d6a13b25, inset 0 0 30px #edc7780a;
+    transform: translateY(25px) scale(.93);
+    transition: transform .8s;
+}
+
+.message.show .message-card { transform: translateY(0) scale(1); }
+
+.message-card::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid #b28b4940;
+    pointer-events: none;
+}
+
+.big-heart {
+    font-size: 53px;
+    color: #ffcf73;
+    text-shadow: 0 0 25px #e2a83d;
+    animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+.message-card h2 {
+    margin: 20px 0;
+    font-size: clamp(28px, 7vw, 39px);
+    font-weight: normal;
+    line-height: 1.4;
+    color: #ffe4a0;
+    white-space: pre-wrap;
+}
+
+.message-card p {
+    line-height: 1.9;
+    color: #e3c98c;
+    font-size: 16px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.typing-cursor::after {
+    content: "|";
+    display: inline-block;
+    margin-left: 3px;
+    color: #ffdc91;
+    animation: cursorBlink .7s step-end infinite;
+}
+
+@keyframes cursorBlink {
+    50% { opacity: 0; }
+}
+
+.close-button {
+    position: relative;
+    z-index: 2;
+    margin-top: 25px;
+    padding: 12px 20px;
+    border: 1px solid #dcb75e;
+    background: #100c07;
+    color: #ffe4a0;
+    font-family: Georgia, serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+@media (max-width: 500px) {
+    .scene { padding-top: 18px; padding-bottom: 82px; }
+    .eyebrow { font-size: 9px; letter-spacing: 3px; }
+    h1 { letter-spacing: 4px; }
+    .heart-area { transform: scale(.82); margin: -10px 0; }
+    .caption { font-size: 14px; }
+    .open-button { margin-top: 22px; padding: 15px 32px; }
+    .footer { font-size: 8px; letter-spacing: 2px; }
+    .music-player { left: 8px; bottom: 8px; gap: 8px; padding: 8px; }
+    .music-player .music-title { display: none; }
+    .music-button { padding: 8px; }
+    .portal-text { font-size: 9px; letter-spacing: 3px; }
+}
+</style>
+</head>
+
+<body>
+
+<main class="scene" id="scene">
+    <div class="ambient one"></div>
+    <div class="ambient two"></div>
+
+    <div class="eyebrow">A Little Surprise For Someone Special</div>
+    <h1>X</h1>
+    <p class="subtitle">My Love. My Heart. My Forever.</p>
+
+    <div class="heart-area" id="heartArea">
+        <div class="orbit">
+            <span class="orbit-dot d1"></span>
+            <span class="orbit-dot d2"></span>
+        </div>
+
+        <div class="orbit two">
+            <span class="orbit-dot d3"></span>
+            <span class="orbit-dot d4"></span>
+        </div>
+
+        <div class="orbit three"></div>
+
+        <div class="heart-stage">
+            <div class="heart-highlight"></div>
+            <div class="heart-shape"></div>
+            <div class="heart-label">ME</div>
+        </div>
+    </div>
+
+    <p class="caption">Every beat of my heart belongs to you.</p>
+
+    <button class="open-button" id="openButton">FOR YOU ♡</button>
+
+    <p class="footer">MADE WITH LOVE, JUST FOR YOU<br><br>♡</p>
+</main>
+
+<div class="arrow" id="arrow">➤</div>
+
+<div class="music-player">
+    <span class="music-icon">♫</span>
+    <span class="music-title">OUR SONG</span>
+    <button class="music-button" id="musicToggle">PLAY MUSIC</button>
+</div>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="music.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<div class="portal-overlay" id="portalOverlay">
+    <div class="portal">
+        <div class="portal-ring"></div>
+        <div class="portal-ring r2"></div>
+        <div class="portal-ring r3"></div>
+        <div class="portal-core"></div>
+        <div class="portal-text">INFINITE LOVE</div>
+    </div>
+</div>
+
+<div class="message" id="message">
+    <div class="message-card">
+        <div class="big-heart">♥</div>
+        <h2 id="birthdayHeading"></h2>
+        <p id="birthdayParagraph"></p>
+        <button class="close-button" id="closeButton">CLOSE WITH LOVE</button>
+    </div>
+</div>
+
+<script>
+const scene = document.getElementById("scene");
+const heartArea = document.getElementById("heartArea");
+const openButton = document.getElementById("openButton");
+const closeButton = document.getElementById("closeButton");
+const message = document.getElementById("message");
+const portalOverlay = document.getElementById("portalOverlay");
+const musicToggle = document.getElementById("musicToggle");
+const bgMusic = document.getElementById("bgMusic");
+const birthdayHeading = document.getElementById("birthdayHeading");
+const birthdayParagraph = document.getElementById("birthdayParagraph");
+
+let busy = false;
+let musicPlaying = false;
+let sequence = [];
+let typingTimers = [];
+let typingSession = 0;
+let typingAudioContext = null;
+
+/* STARS */
+
+for (let i = 0; i < 55; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.setProperty("--duration", (1.5 + Math.random() * 3) + "s");
+    star.style.animationDelay = Math.random() * 3 + "s";
+    document.body.appendChild(star);
+}
+
+/* FALLING PETALS */
+
+const petalSymbols = ["✿", "❀", "❋", "♥"];
+
+function createPetal() {
+    const petal = document.createElement("span");
+    petal.className = "petal";
+    petal.textContent = petalSymbols[Math.floor(Math.random() * petalSymbols.length)];
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.fontSize = (12 + Math.random() * 17) + "px";
+    petal.style.setProperty("--duration", (7 + Math.random() * 8) + "s");
+    petal.style.setProperty("--drift", (Math.random() * 180 - 90) + "px");
+    document.body.appendChild(petal);
+    setTimeout(() => petal.remove(), 16000);
+}
+
+setInterval(createPetal, 450);
+
+/* PARTICLE EXPLOSION */
+
+function particleExplosion(x, y, count = 130) {
+    for (let i = 0; i < count; i++) {
+        const spark = document.createElement("span");
+        spark.className = "spark";
+        spark.style.left = x + "px";
+        spark.style.top = y + "px";
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 60 + Math.random() * 270;
+
+        spark.style.setProperty("--x", Math.cos(angle) * distance + "px");
+        spark.style.setProperty("--y", Math.sin(angle) * distance + "px");
+        spark.style.setProperty("--size", (2 + Math.random() * 5) + "px");
+        spark.style.setProperty("--duration", (0.8 + Math.random() * 0.9) + "s");
+
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 2000);
+    }
+}
+
+/* MUSIC */
+
+musicToggle.addEventListener("click", async () => {
+    if (!musicPlaying) {
+        try {
+            await bgMusic.play();
+            musicPlaying = true;
+            musicToggle.textContent = "♫ MUSIC ON / STOP";
+        } catch (error) {
+            alert("Music could not play. Check that music.mp3.mp3 is beside index.html.");
+        }
+    } else {
+        bgMusic.pause();
+        musicPlaying = false;
+        musicToggle.textContent = "PLAY MUSIC";
+    }
+});
+
+/* LOUDER TYPING SOUND */
+
+function playTypingSound(character) {
+    if (character === " " || character === "\n") return;
+
+    try {
+        if (!typingAudioContext) {
+            const AudioContextClass =
+                window.AudioContext || window.webkitAudioContext;
+
+            if (!AudioContextClass) return;
+
+            typingAudioContext = new AudioContextClass();
+        }
+
+        if (typingAudioContext.state === "suspended") {
+            typingAudioContext.resume();
+        }
+
+        const now = typingAudioContext.currentTime;
+        const oscillator = typingAudioContext.createOscillator();
+        const gain = typingAudioContext.createGain();
+
+        oscillator.type = "square";
+
+        oscillator.frequency.setValueAtTime(
+            650 + Math.random() * 250,
+            now
+        );
+
+        /* Increased volume */
+        gain.gain.setValueAtTime(0.05, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+
+        oscillator.connect(gain);
+        gain.connect(typingAudioContext.destination);
+
+        oscillator.start(now);
+        oscillator.stop(now + 0.04);
+    } catch (error) {
+        // Typing continues even if audio is unavailable.
+    }
+}
+
+/* TYPEWRITER ANIMATION */
+
+function stopTyping() {
+    typingSession++;
+
+    typingTimers.forEach(clearTimeout);
+    typingTimers = [];
+
+    birthdayHeading.classList.remove("typing-cursor");
+    birthdayParagraph.classList.remove("typing-cursor");
+}
+
+function typeText(element, text, speed, session, callback) {
+    if (session !== typingSession) return;
+
+    element.textContent = "";
+    element.classList.add("typing-cursor");
+
+    let index = 0;
+
+    function writeCharacter() {
+        if (session !== typingSession) return;
+
+        element.textContent = text.slice(0, index);
+
+        if (index < text.length) {
+            playTypingSound(text[index]);
+        }
+
+        index++;
+
+        if (index <= text.length) {
+            const timer = setTimeout(writeCharacter, speed);
+            typingTimers.push(timer);
+        } else {
+            element.classList.remove("typing-cursor");
+            if (callback) callback();
+        }
+    }
+
+    writeCharacter();
+}
+
+function startBirthdayTyping() {
+    stopTyping();
+
+    const session = typingSession;
+
+    const headingText = "Happy Birthday,\nMy Love.";
+
+    const paragraphText =
+        "You are my favourite person,\n" +
+        "my happiest thought,\n" +
+        "and my forever love.\n\n" +
+        "May your world always shine\n" +
+        "as beautifully as your heart.\n\n" +
+        "Forever yours. ❤️";
+
+    typeText(
+        birthdayHeading,
+        headingText,
+        180,
+        session,
+        () => {
+            if (session !== typingSession) return;
+
+            const timer = setTimeout(() => {
+                if (session !== typingSession) return;
+
+                typeText(
+                    birthdayParagraph,
+                    paragraphText,
+                    75,
+                    session
+                );
+            }, 650);
+
+            typingTimers.push(timer);
+        }
+    );
+}
+
+/* ARROW -> EXPLOSION -> PORTAL -> MESSAGE */
+
+function later(callback, delay) {
+    const id = setTimeout(callback, delay);
+    sequence.push(id);
+}
+
+function clearSequence() {
+    sequence.forEach(clearTimeout);
+    sequence = [];
+}
+
+openButton.addEventListener("click", () => {
+    if (busy) return;
+
+    busy = true;
+    openButton.disabled = true;
+
+    scene.classList.remove("launch");
+    void scene.offsetWidth;
+    scene.classList.add("launch");
+
+    const rect = heartArea.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    later(() => {
+        particleExplosion(centerX, centerY, 160);
+    }, 850);
+
+    later(() => {
+        portalOverlay.classList.add("show");
+
+        particleExplosion(
+            window.innerWidth / 2,
+            window.innerHeight / 2,
+            100
+        );
+    }, 1250);
+
+    later(() => {
+        portalOverlay.classList.remove("show");
+
+        birthdayHeading.textContent = "";
+        birthdayParagraph.textContent = "";
+
+        message.classList.add("show");
+        startBirthdayTyping();
+    }, 3600);
+});
+
+/* CLOSE AND RESET */
+
+closeButton.addEventListener("click", () => {
+    clearSequence();
+    stopTyping();
+
+    message.classList.remove("show");
+    portalOverlay.classList.remove("show");
+    scene.classList.remove("launch");
+
+    busy = false;
+    openButton.disabled = false;
+});
+</script>
+
+</body>
+</html>
